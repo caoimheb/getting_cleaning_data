@@ -10,6 +10,6 @@ Before running the code, you must download the required data. The .zip of the da
 
 To execute the required script to join, filter and tidy the data, following the steps below in RStudio or another R text editor. 
 
-```source('./run_analysis.R') ```
-``` tidy_data_set <- run_analysis() ```
-``` View(tidy_data)```
+1. ```source('./run_analysis.R') ```
+2. ``` tidy_data_set <- run_analysis() ```
+3. ``` View(tidy_data)```
