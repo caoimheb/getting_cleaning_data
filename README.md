@@ -4,6 +4,12 @@ This repository contains my submission for the Getting and Cleaning Data Course 
 
 ## Pre-requisites
 
-Before running the code, 
+Before running the code, you must download the required data. The .zip of the data directory is available from [here](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip). Unzip the directory into your R working directory, ensuring that `run_analysis.R` is also in the working directory. 
 
 ## Execution
+
+To execute the required script to join, filter and tidy the data, following the steps below in RStudio or another R text editor. 
+
+1. ``` source('./run_analysis.R') 
+tidy_data_set <- run_analysis() 
+View(tidy_data)```
