@@ -1,3 +1,6 @@
+# This function assumes the required data directory is in the working directory. 
+# It reads and combines all necessary files, filters for mean and std, and tidies 
+# data set as required.
 run_analysis <- function() {
   
       # Read in test data - x, y and subject
@@ -18,36 +21,11 @@ run_analysis <- function() {
       activities_names <- read.table("UCI HAR Dataset/activity_labels.txt")
       colnames(activities_names) <- c("activity_id", "activity_name")
       
-      
+      # Combine all test files 
       combined_test <- combine_data_sets(column_names, x_test, activities_test, activities_names, subject_test)
+      # Combine all train files
       combined_train  <- combine_data_sets(column_names, x_train, activities_train, activities_names, subject_train)
             
-      # Rename columns on test and train data sets to column names
-      #colnames(x_test) <- column_names
-      #colnames(x_train) <- column_names
-      
-      # Add activities as first column on test and train data sets
-      #complete_test <- cbind(activities_test, x_test)
-      #complete_train <- cbind(activities_train, x_train)
-      
-      # Rename this new activity column to a more meaningful name
-      #colnames(complete_test)[1] <- "activity"
-      #colnames(complete_train)[1] <- "activity"
-      
-      # Add activity name to each data set
-      #test_with_activity_name <- right_join(activities_names, complete_test, by = c("activity_id" = "activity"))
-      #train_with_activity_name <- right_join(activities_names, complete_train, by = c("activity_id" = "activity"))
-      
-      # Add subject to each data set
-      #final_combined_test <- cbind(subject_test, test_with_activity_name)
-      #final_combined_train <- cbind(subject_train, train_with_activity_name)
-            
-      # Rename subject column
-      #colnames(final_combined_test)[1] <- "subject"
-      #colnames(final_combined_train)[1] <- "subject"
-      
-      
-      
       # Combine test and train data sets
       tidy_data_set <- rbind(combined_test, combined_train)
       
@@ -66,6 +44,7 @@ run_analysis <- function() {
       return (answer[ , -3])
 }
 
+# The function combines the values and label data sets and adds activity and subject to the combined set.
 combine_data_sets <- function(column_names, x_set, activities, activities_names, subject) {
       # Rename columns on data set to column names
       colnames(x_set) <- column_names
@@ -88,6 +67,7 @@ combine_data_sets <- function(column_names, x_set, activities, activities_names,
       return (combined_data_set)
 }
 
+# This function renames the columns into a human-readable, tidy format
 tidy_names <- function(data_frame) {
       names(data_frame) <- gsub('^t', 'Time', names(data_frame))
       names(data_frame) <- gsub('^f', 'Frequency', names(data_frame))
