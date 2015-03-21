@@ -13,3 +13,5 @@ To execute the required script to join, filter and tidy the data, following the 
 1. ```source('./run_analysis.R') ```
 2. ``` tidy_data_set <- run_analysis() ```
 3. ``` View(tidy_data)```
+
+The `run_analysis()` function will combine all test and train data sets, which includes adding activity labels and a subject field, as well as meaningful names for each value. It also filters all values to include in the final data set only those values which are a mean or standard deviation, as required by the project description. 
